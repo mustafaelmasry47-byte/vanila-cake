@@ -1,673 +1,1580 @@
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 
 <head>
+
   <meta charset="UTF-8">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <meta name="theme-color" content="#111111">
 
   <title>Vanilla Cake | فانليا كيك</title>
 
-  <meta name="description" content="Vanilla Cake - كيك وحلويات أونلاين">
+  <meta
+    name="description"
+    content="Vanilla Cake - كيك وحلويات أونلاين"
+  >
 
   <link rel="stylesheet" href="style.css">
+
+  <style>
+
+    /* =========================
+       CART BUTTON
+    ========================== */
+
+    .cart-button {
+
+      position: fixed;
+
+      bottom: 20px;
+      left: 20px;
+
+      width: 60px;
+      height: 60px;
+
+      border: none;
+      border-radius: 50%;
+
+      background: #111;
+      color: white;
+
+      font-size: 22px;
+
+      cursor: pointer;
+
+      z-index: 999;
+
+      box-shadow: 0 5px 20px rgba(0,0,0,.25);
+
+    }
+
+
+    .cart-button span {
+
+      position: absolute;
+
+      top: -5px;
+      right: -5px;
+
+      background: #e91e63;
+      color: white;
+
+      width: 23px;
+      height: 23px;
+
+      border-radius: 50%;
+
+      font-size: 13px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+    }
+
+
+    /* =========================
+       CART
+    ========================== */
+
+    .cart {
+
+      position: fixed;
+
+      top: 0;
+      right: -420px;
+
+      width: 380px;
+      max-width: 90%;
+
+      height: 100vh;
+
+      background: white;
+
+      z-index: 1001;
+
+      padding: 25px;
+
+      box-sizing: border-box;
+
+      box-shadow: -5px 0 25px rgba(0,0,0,.2);
+
+      transition: .3s;
+
+      overflow-y: auto;
+
+    }
+
+
+    .cart.open {
+
+      right: 0;
+
+    }
+
+
+    .cart h2 {
+
+      margin-top: 10px;
+      margin-bottom: 25px;
+
+    }
+
+
+    .cart-close {
+
+      position: absolute;
+
+      top: 15px;
+      left: 15px;
+
+      border: none;
+
+      background: #eee;
+
+      width: 35px;
+      height: 35px;
+
+      border-radius: 50%;
+
+      cursor: pointer;
+
+    }
+
+
+    /* =========================
+       CART ITEM
+    ========================== */
+
+    .cart-item {
+
+      border-bottom: 1px solid #eee;
+
+      padding: 15px 0;
+
+      display: grid;
+
+      grid-template-columns: 1fr auto;
+
+      gap: 10px;
+
+      align-items: center;
+
+    }
+
+
+    .cart-item h3 {
+
+      margin: 0 0 5px;
+
+      font-size: 16px;
+
+    }
+
+
+    .cart-item p {
+
+      margin: 0;
+
+      color: #777;
+
+    }
+
+
+    .quantity {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 8px;
+
+    }
+
+
+    .quantity button {
+
+      width: 30px;
+      height: 30px;
+
+      border: none;
+
+      border-radius: 6px;
+
+      background: #111;
+
+      color: white;
+
+      cursor: pointer;
+
+    }
+
+
+    .quantity span {
+
+      min-width: 20px;
+
+      text-align: center;
+
+    }
+
+
+    .remove-item {
+
+      border: none;
+
+      background: transparent;
+
+      cursor: pointer;
+
+      font-size: 18px;
+
+    }
+
+
+    /* =========================
+       TOTAL
+    ========================== */
+
+    .cart-total {
+
+      margin-top: 25px;
+
+      padding: 15px;
+
+      background: #f7f7f7;
+
+      border-radius: 10px;
+
+      font-size: 18px;
+
+    }
+
+
+    /* =========================
+       CHECKOUT
+    ========================== */
+
+    .checkout {
+
+      width: 100%;
+
+      margin-top: 15px;
+
+      padding: 14px;
+
+      border: none;
+
+      border-radius: 10px;
+
+      background: #25D366;
+
+      color: white;
+
+      font-size: 16px;
+
+      font-weight: bold;
+
+      cursor: pointer;
+
+    }
+
+
+    /* =========================
+       OVERLAY
+    ========================== */
+
+    .cart-overlay {
+
+      position: fixed;
+
+      inset: 0;
+
+      background: rgba(0,0,0,.5);
+
+      z-index: 1000;
+
+      opacity: 0;
+
+      visibility: hidden;
+
+      transition: .3s;
+
+    }
+
+
+    .cart-overlay.open {
+
+      opacity: 1;
+
+      visibility: visible;
+
+    }
+
+
+    /* =========================
+       ADD TO CART
+    ========================== */
+
+    .add-cart {
+
+      display: block;
+
+      width: 100%;
+
+      margin-top: 12px;
+
+      padding: 10px;
+
+      border: none;
+
+      border-radius: 8px;
+
+      background: #111;
+
+      color: white;
+
+      cursor: pointer;
+
+      font-size: 14px;
+
+    }
+
+
+    .add-cart:hover {
+
+      opacity: .85;
+
+    }
+
+
+    /* =========================
+       MOBILE
+    ========================== */
+
+    @media (max-width: 600px) {
+
+      .cart {
+
+        width: 90%;
+
+      }
+
+      .cart-button {
+
+        bottom: 15px;
+        left: 15px;
+
+      }
+
+    }
+
+  </style>
+
 </head>
+
 
 <body>
 
-  <header class="header">
 
-    <a class="brand" href="#home" aria-label="Vanilla Cake">
-      <img
-        src="assets/logo.png"
-        alt="Vanilla Cake logo"
-        id="mainLogo"
-      >
+<header class="header">
+
+  <a
+    class="brand"
+    href="#home"
+    aria-label="Vanilla Cake"
+  >
+
+    <img
+      src="assets/logo.png"
+      alt="Vanilla Cake logo"
+      id="mainLogo"
+    >
+
+  </a>
+
+
+  <button
+    class="menu-btn"
+    aria-label="فتح القائمة"
+    onclick="toggleMenu()"
+  >
+    ☰
+  </button>
+
+
+  <nav id="nav">
+
+    <a href="#home" onclick="closeMenu()">
+      الرئيسية
     </a>
 
-    <button
-      class="menu-btn"
-      aria-label="فتح القائمة"
-      onclick="toggleMenu()"
-    >
-      ☰
-    </button>
+    <a href="#menu" onclick="closeMenu()">
+      المنيو
+    </a>
 
-    <nav id="nav">
+    <a href="#about" onclick="closeMenu()">
+      اتعرف علينا اكتر
+    </a>
 
-      <a href="#home" onclick="closeMenu()">
-        الرئيسية
-      </a>
+    <a href="#contact" onclick="closeMenu()">
+      اطلب الآن
+    </a>
 
-      <a href="#menu" onclick="closeMenu()">
-        المنيو
-      </a>
+  </nav>
 
-      <a href="#about" onclick="closeMenu()">
-        اتعرف علينا اكتر
-      </a>
+</header>
 
-      <a href="#contact" onclick="closeMenu()">
-        اطلب الآن
-      </a>
 
-    </nav>
+<main>
 
-  </header>
 
+<!-- =========================
+     HERO
+========================== -->
 
-  <main>
+<section id="home" class="hero">
 
-    <!-- HERO -->
+  <div class="hero-copy">
 
-    <section id="home" class="hero">
+    <span class="eyebrow">
+      VANILLA CAKE
+    </span>
 
-      <div class="hero-copy">
+    <h1>
+      <strong>
+        اختار حاجة تحلي بيها
+      </strong>
+    </h1>
 
-        <span class="eyebrow">
-          VANILLA CAKE
-        </span>
+    <p>
+      كيك وحلويات بتتعمل بحب، وبتوصلك لحد باب البيت.
+    </p>
 
-        <h1>
-          
-          <strong>اختار حاجة تحلي بيها</strong>
-        </h1>
-
-        <p>
-          كيك وحلويات بتتعمل بحب، وبتوصلك لحد باب البيت.
-        </p>
-
-        <div class="actions">
-
-          <a class="btn primary" href="#menu">
-            شوف المنيو
-          </a>
-
-          <a class="btn ghost" href="#contact">
-            اطلب دلوقتي
-          </a>
-
-        </div>
-
-      </div>
-
-
-      <div class="hero-card">
-
-        <img
-          src="assets/logo.png"
-          alt="Vanilla Cake"
-        >
-
-      </div>
-
-    </section>
-
-
-    <!-- MENU -->
-
-    <section id="menu" class="section">
-
-      <div class="section-title">
-
-        <span>
-          OUR MENU
-        </span>
-
-        <h2>
-          يلا بينا نختار😍
-        </h2>
-
-        <p>
-          مفيش اسعار للتورت ثابته  عشان الخمات كل يوم اسعرها بتتغير ومش ثابته وغير كل ده كل ديزاين وليه سعره❤️
-        </p>
-
-      </div>
-
-
-      <div class="categories">
-
-        <button
-          class="cat active"
-          onclick="filterMenu('all', this)"
-        >
-          الكل
-        </button>
-
-        <button
-          class="cat"
-          onclick="filterMenu('cakes', this)"
-        >
-          كيك
-        </button>
-
-        <button
-          class="cat"
-          onclick="filterMenu('desserts', this)"
-        >
-          كب كيكس و كوكيز
-        </button>
-
-        <button
-          class="cat"
-          onclick="filterMenu('special', this)"
-        >
-          مميز
-        </button>
-
-      </div>
-
-
-      <div class="products">
-
-        <article class="product" data-type="cakes">
-
-          <div class="product-image">
-            🎂
-          </div>
-
-          <div>
-            <h3>
-              كيكة شوكولاتة
-            </h3>
-
-            <p>
-              كيك شوكولاتة بصوص غني.
-            </p>
-
-            <b>
-              500
-            </b>
-          </div>
-
-        </article>
-
-
-        <article class="product" data-type="cakes">
-
-          <div class="product-image">
-            🍰
-          </div>
-
-          <div>
-            <h3>
-              كيكة فانيليا
-            </h3>
-
-            <p>
-              خفيفة وكريمية بطعم الفانيليا.
-            </p>
-
-            <b>
-              500
-            </b>
-          </div>
-
-        </article>
-
-
-        <article class="product" data-type="desserts">
-
-          <div class="product-image">
-            🧁
-          </div>
-
-          <div>
-            <h3>
-              كب كيك
-            </h3>
-
-            <p>
-              دسته 12 قطعه طعمها حكايه.❤️
-            </p>
-
-            <b>
-              350
-            </b>
-          </div>
-
-        </article>
-
-
-        <article class="product" data-type="desserts">
-
-          <div class="product-image">
-            🍪
-          </div>
-
-          <div>
-            <h3>
-              كوكيز
-            </h3>
-
-            <p>
-        (الكوكيز بتخرج بالكيلو)
-             مخبوزة طازة وبقوام غني
-            </p>
-
-            <b>
-              400
-            </b>
-          </div>
-
-        </article>
-
-
-        <article class="product" data-type="special">
-
-          <div class="product-image">
-            🍫
-          </div>
-
-          <div>
-            <h3>
-              شوكولاتة
-            </h3>
-
-            <p>
-              اكبر تشكيله من بارات الشكولاته وطعمها روعه❤️
-            </p>
-
-            <b>
-              حسب الطلب
-            </b>
-          </div>
-
-        </article>
-
-
-        <article class="product" data-type="special">
-
-          <div class="product-image">
-            🎁
-          </div>
-
-          <div>
-            <h3>
-              بوكس مناسبات
-            </h3>
-
-            <p>
-              بوكس هدايه ينفع تعملي بيه سوبرايز لخطيبك😍
-            </p>
-
-            <b>
-              اسال الادمن في جروب الوتساب 
-            </b>
-          </div>
-
-        </article>
-
-      </div>
-
-    </section>
-
-
-    <!-- ABOUT -->
-
-    <section id="about" class="about section">
-
-      <div>
-
-        <span class="eyebrow">
-          WHY VANILLA?
-        </span>
-
-        <h2>
-   ✨احنا ديما غير✨
-        </h2>
-
-        <p>
-فانليا كيك مش مجرد بيدج اون لاين 
-    احنا تيم كبير وعيله هدفنا ديما نقدملك اعلي جوده واقل سعر ❤️
-        </p>
-
-      </div>
-
-
-      <div class="features">
-
-        <div>
-          <span>01</span>
-          <h3>طازة</h3>
-          <p>تحضير حسب الطلب.</p>
-        </div>
-
-        <div>
-          <span>02</span>
-          <h3>على ذوقك</h3>
-          <p>متاح بكل سهوله تبعتلنا التصميم الي تحبه
-            او تقولنا علي الي في دماغك واحنا ننفظه❤️
-          </p>
-        </div>
-
-        <div>
-          <span>03</span>
-          <h3>أونلاين</h3>
-          <p>اطلب بسهولة من الموبايل.</p>
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- CONTACT -->
-
-    <section id="contact" class="order section">
-
-      <div class="section-title">
-
-        <span>
-          ORDER NOW
-        </span>
-
-        <h2>
-          عايز تطلب؟
-        </h2>
-
-        <p>
-          ابعتلنا تفاصيل طلبك على واتساب.
-        </p>
-
-      </div>
-
+    <div class="actions">
 
       <a
-        class="whatsapp"
-        href="#"
-        onclick="orderWhatsApp(); return false;"
+        class="btn primary"
+        href="#menu"
       >
-        💬 اطلب على واتساب
+        شوف المنيو
       </a>
 
-      <p class="small">
-        01022951908
-      </p>
+      <a
+        class="btn ghost"
+        href="#contact"
+      >
+        اطلب دلوقتي
+      </a>
 
-    </section>
+    </div>
 
-  </main>
+  </div>
 
 
-  <!-- FOOTER -->
-
-  <footer>
+  <div class="hero-card">
 
     <img
       src="assets/logo.png"
       alt="Vanilla Cake"
     >
 
+  </div>
+
+</section>
+
+
+<!-- =========================
+     MENU
+========================== -->
+
+<section id="menu" class="section">
+
+  <div class="section-title">
+
+    <span>
+      OUR MENU
+    </span>
+
+    <h2>
+      يلا بينا نختار 😍
+    </h2>
+
     <p>
-      © 2026 Vanilla Cake — All Rights Reserved
+      مفيش أسعار للتورت ثابتة عشان الخامات كل يوم أسعارها بتتغير ومش ثابتة،
+      وغير كل ده كل ديزاين وليه سعره ❤️
     </p>
 
-  </footer>
+  </div>
 
 
-  <!-- =========================
-       JAVASCRIPT
-  ========================== -->
+  <div class="categories">
 
-  <script>
+    <button
+      class="cat active"
+      onclick="filterMenu('all', this)"
+    >
+      الكل
+    </button>
 
-    /* =========================
-       MENU
-    ========================== */
+    <button
+      class="cat"
+      onclick="filterMenu('cakes', this)"
+    >
+      كيك
+    </button>
 
-    function toggleMenu() {
+    <button
+      class="cat"
+      onclick="filterMenu('desserts', this)"
+    >
+      كب كيكس و كوكيز
+    </button>
 
-      document
-        .getElementById('nav')
-        .classList
-        .toggle('open');
+    <button
+      class="cat"
+      onclick="filterMenu('special', this)"
+    >
+      مميز
+    </button>
+
+  </div>
+
+
+  <div class="products">
+
+
+    <!-- CHOCOLATE CAKE -->
+
+    <article
+      class="product"
+      data-type="cakes"
+    >
+
+      <div class="product-image">
+        🎂
+      </div>
+
+      <div>
+
+        <h3>
+          كيكة شوكولاتة
+        </h3>
+
+        <p>
+          كيك شوكولاتة بصوص غني.
+        </p>
+
+        <b>
+          500 جنيه
+        </b>
+
+        <button
+          class="add-cart"
+          onclick="addToCart('كيكة شوكولاتة', 500)"
+        >
+          🛒 أضف للسلة
+        </button>
+
+      </div>
+
+    </article>
+
+
+    <!-- VANILLA CAKE -->
+
+    <article
+      class="product"
+      data-type="cakes"
+    >
+
+      <div class="product-image">
+        🍰
+      </div>
+
+      <div>
+
+        <h3>
+          كيكة فانيليا
+        </h3>
+
+        <p>
+          خفيفة وكريمية بطعم الفانيليا.
+        </p>
+
+        <b>
+          500 جنيه
+        </b>
+
+        <button
+          class="add-cart"
+          onclick="addToCart('كيكة فانيليا', 500)"
+        >
+          🛒 أضف للسلة
+        </button>
+
+      </div>
+
+    </article>
+
+
+    <!-- CUPCAKE -->
+
+    <article
+      class="product"
+      data-type="desserts"
+    >
+
+      <div class="product-image">
+        🧁
+      </div>
+
+      <div>
+
+        <h3>
+          كب كيك
+        </h3>
+
+        <p>
+          دستة 12 قطعة طعمها حكاية ❤️
+        </p>
+
+        <b>
+          350 جنيه
+        </b>
+
+        <button
+          class="add-cart"
+          onclick="addToCart('كب كيك - 12 قطعة', 350)"
+        >
+          🛒 أضف للسلة
+        </button>
+
+      </div>
+
+    </article>
+
+
+    <!-- COOKIES -->
+
+    <article
+      class="product"
+      data-type="desserts"
+    >
+
+      <div class="product-image">
+        🍪
+      </div>
+
+      <div>
+
+        <h3>
+          كوكيز
+        </h3>
+
+        <p>
+          الكوكيز بتخرج بالكيلو، مخبوزة طازة وبقوام غني.
+        </p>
+
+        <b>
+          400 جنيه
+        </b>
+
+        <button
+          class="add-cart"
+          onclick="addToCart('كوكيز - كيلو', 400)"
+        >
+          🛒 أضف للسلة
+        </button>
+
+      </div>
+
+    </article>
+
+
+    <!-- CHOCOLATE -->
+
+    <article
+      class="product"
+      data-type="special"
+    >
+
+      <div class="product-image">
+        🍫
+      </div>
+
+      <div>
+
+        <h3>
+          شوكولاتة
+        </h3>
+
+        <p>
+          أكبر تشكيلة من بارات الشوكولاتة وطعمها روعة ❤️
+        </p>
+
+        <b>
+          حسب الطلب
+        </b>
+
+        <button
+          class="add-cart"
+          onclick="orderWhatsApp('شوكولاتة')"
+        >
+          💬 اطلب على واتساب
+        </button>
+
+      </div>
+
+    </article>
+
+
+    <!-- GIFT BOX -->
+
+    <article
+      class="product"
+      data-type="special"
+    >
+
+      <div class="product-image">
+        🎁
+      </div>
+
+      <div>
+
+        <h3>
+          بوكس مناسبات
+        </h3>
+
+        <p>
+          بوكس هدايا ينفع تعملي بيه سوبرايز لخطيبك 😍
+        </p>
+
+        <b>
+          اسأل الأدمن
+        </b>
+
+        <button
+          class="add-cart"
+          onclick="orderWhatsApp('بوكس مناسبات')"
+        >
+          💬 اطلب على واتساب
+        </button>
+
+      </div>
+
+    </article>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     ABOUT
+========================== -->
+
+<section
+  id="about"
+  class="about section"
+>
+
+  <div>
+
+    <span class="eyebrow">
+      WHY VANILLA?
+    </span>
+
+    <h2>
+      ✨ احنا ديما غير ✨
+    </h2>
+
+    <p>
+      فانليا كيك مش مجرد بيدج أونلاين،
+      احنا تيم كبير وعيلة، هدفنا ديما نقدملك أعلى جودة وأقل سعر ❤️
+    </p>
+
+  </div>
+
+
+  <div class="features">
+
+    <div>
+
+      <span>01</span>
+
+      <h3>
+        طازة
+      </h3>
+
+      <p>
+        تحضير حسب الطلب.
+      </p>
+
+    </div>
+
+
+    <div>
+
+      <span>02</span>
+
+      <h3>
+        على ذوقك
+      </h3>
+
+      <p>
+        متاح بكل سهولة تبعتلنا التصميم اللي تحبه
+        أو تقولنا على اللي في دماغك وإحنا ننفذه ❤️
+      </p>
+
+    </div>
+
+
+    <div>
+
+      <span>03</span>
+
+      <h3>
+        أونلاين
+      </h3>
+
+      <p>
+        اطلب بسهولة من الموبايل.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     CONTACT
+========================== -->
+
+<section
+  id="contact"
+  class="order section"
+>
+
+  <div class="section-title">
+
+    <span>
+      ORDER NOW
+    </span>
+
+    <h2>
+      عايز تطلب؟
+    </h2>
+
+    <p>
+      اختار منتجاتك من المنيو وضيفها للسلة،
+      وبعدها ابعت الطلب على واتساب.
+    </p>
+
+  </div>
+
+
+  <a
+    class="whatsapp"
+    href="#"
+    onclick="orderWhatsApp(); return false;"
+  >
+    💬 اطلب على واتساب
+  </a>
+
+
+  <p class="small">
+    01022951908
+  </p>
+
+</section>
+
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================== -->
+
+<footer>
+
+  <img
+    src="assets/logo.png"
+    alt="Vanilla Cake"
+  >
+
+  <p>
+    © 2026 Vanilla Cake — All Rights Reserved
+  </p>
+
+</footer>
+
+
+<!-- =========================
+     CART
+========================== -->
+
+<div
+  id="cartOverlay"
+  class="cart-overlay"
+  onclick="closeCart()"
+></div>
+
+
+<div
+  id="cart"
+  class="cart"
+>
+
+  <button
+    class="cart-close"
+    onclick="closeCart()"
+  >
+    ✕
+  </button>
+
+
+  <h2>
+    🛒 سلة المشتريات
+  </h2>
+
+
+  <div id="cartItems">
+
+    <p>
+      السلة فاضية ❤️
+    </p>
+
+  </div>
+
+
+  <div class="cart-total">
+
+    الإجمالي:
+
+    <strong>
+      <span id="cartTotal">
+        0
+      </span>
+
+      جنيه
+    </strong>
+
+  </div>
+
+
+  <button
+    class="checkout"
+    onclick="checkoutWhatsApp()"
+  >
+    💬 تأكيد الطلب على واتساب
+  </button>
+
+</div>
+
+
+<!-- زر السلة -->
+
+<button
+  class="cart-button"
+  onclick="openCart()"
+>
+
+  🛒
+
+  <span id="cartCount">
+    0
+  </span>
+
+</button>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================== -->
+
+<script>
+
+
+/* =========================
+   MENU
+========================== */
+
+function toggleMenu() {
+
+  document
+    .getElementById('nav')
+    .classList
+    .toggle('open');
+
+}
+
+
+function closeMenu() {
+
+  document
+    .getElementById('nav')
+    .classList
+    .remove('open');
+
+}
+
+
+/* =========================
+   FILTER
+========================== */
+
+function filterMenu(type, button) {
+
+  playClickSound();
+
+
+  document
+    .querySelectorAll('.cat')
+    .forEach(b => {
+
+      b.classList.remove('active');
+
+    });
+
+
+  button.classList.add('active');
+
+
+  document
+    .querySelectorAll('.product')
+    .forEach(card => {
+
+      const show =
+        type === 'all' ||
+        card.dataset.type === type;
+
+
+      card.style.display =
+        show ? 'grid' : 'none';
+
+    });
+
+}
+
+
+/* =========================
+   WHATSAPP
+========================== */
+
+const whatsappNumber =
+  "201022951908";
+
+
+function orderWhatsApp(productName = "") {
+
+  playClickSound();
+
+
+  let message =
+    "السلام عليكم ❤️\n" +
+    "عايز أطلب من Vanilla Cake";
+
+
+  if (productName) {
+
+    message +=
+      `\n\n🍰 المنتج: ${productName}`;
+
+  }
+
+
+  const url =
+    `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+
+  window.open(
+    url,
+    "_blank"
+  );
+
+}
+
+
+/* =========================
+   CART
+========================== */
+
+let cart = [];
+
+
+/* إضافة للسلة */
+
+function addToCart(name, price) {
+
+  playClickSound();
+
+
+  const existing =
+    cart.find(item => item.name === name);
+
+
+  if (existing) {
+
+    existing.quantity++;
+
+  } else {
+
+    cart.push({
+
+      name: name,
+
+      price: price,
+
+      quantity: 1
+
+    });
+
+  }
+
+
+  updateCart();
+
+  openCart();
+
+}
+
+
+/* تحديث السلة */
+
+function updateCart() {
+
+  const cartItems =
+    document.getElementById('cartItems');
+
+
+  const cartCount =
+    document.getElementById('cartCount');
+
+
+  const cartTotal =
+    document.getElementById('cartTotal');
+
+
+  cartItems.innerHTML = "";
+
+
+  let total = 0;
+
+  let count = 0;
+
+
+  if (cart.length === 0) {
+
+    cartItems.innerHTML =
+      "<p>السلة فاضية ❤️</p>";
+
+  }
+
+
+  cart.forEach((item, index) => {
+
+
+    total +=
+      item.price * item.quantity;
+
+
+    count +=
+      item.quantity;
+
+
+    const element =
+      document.createElement('div');
+
+
+    element.className =
+      'cart-item';
+
+
+    element.innerHTML = `
+
+      <div>
+
+        <h3>
+          ${item.name}
+        </h3>
+
+        <p>
+          ${item.price} جنيه
+        </p>
+
+        <div class="quantity">
+
+          <button
+            onclick="changeQuantity(${index}, -1)"
+          >
+            −
+          </button>
+
+          <span>
+            ${item.quantity}
+          </span>
+
+          <button
+            onclick="changeQuantity(${index}, 1)"
+          >
+            +
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <button
+        class="remove-item"
+        onclick="removeFromCart(${index})"
+      >
+        🗑️
+      </button>
+
+    `;
+
+
+    cartItems.appendChild(element);
+
+  });
+
+
+  cartCount.textContent =
+    count;
+
+
+  cartTotal.textContent =
+    total;
+
+}
+
+
+/* تغيير الكمية */
+
+function changeQuantity(index, amount) {
+
+  cart[index].quantity += amount;
+
+
+  if (cart[index].quantity <= 0) {
+
+    cart.splice(index, 1);
+
+  }
+
+
+  updateCart();
+
+}
+
+
+/* حذف */
+
+function removeFromCart(index) {
+
+  playClickSound();
+
+  cart.splice(index, 1);
+
+  updateCart();
+
+}
+
+
+/* فتح السلة */
+
+function openCart() {
+
+  document
+    .getElementById('cart')
+    .classList
+    .add('open');
+
+
+  document
+    .getElementById('cartOverlay')
+    .classList
+    .add('open');
+
+}
+
+
+/* غلق السلة */
+
+function closeCart() {
+
+  document
+    .getElementById('cart')
+    .classList
+    .remove('open');
+
+
+  document
+    .getElementById('cartOverlay')
+    .classList
+    .remove('open');
+
+}
+
+
+/* =========================
+   CHECKOUT
+========================== */
+
+function checkoutWhatsApp() {
+
+
+  if (cart.length === 0) {
+
+    alert(
+      "السلة فاضية ❤️\nاختار المنتجات الأول."
+    );
+
+    return;
+
+  }
+
+
+  let message =
+    "السلام عليكم ❤️\n" +
+    "عايز أعمل الطلب ده من Vanilla Cake:\n\n";
+
+
+  let total = 0;
+
+
+  cart.forEach(item => {
+
+
+    const itemTotal =
+      item.price * item.quantity;
+
+
+    total += itemTotal;
+
+
+    message +=
+      `🍰 ${item.name}\n` +
+      `الكمية: ${item.quantity}\n` +
+      `السعر: ${itemTotal} جنيه\n\n`;
+
+  });
+
+
+  message +=
+    `💰 الإجمالي: ${total} جنيه\n\n` +
+    "📍 العنوان:\n" +
+    "📞 رقم الهاتف:";
+
+
+  const url =
+    `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+
+  window.open(
+    url,
+    "_blank"
+  );
+
+}
+
+
+/* =========================
+   CLICK SOUND
+========================== */
+
+let audioContext;
+
+
+function playClickSound() {
+
+  try {
+
+
+    if (!audioContext) {
+
+      audioContext =
+        new (
+          window.AudioContext ||
+          window.webkitAudioContext
+        )();
 
     }
 
 
-    function closeMenu() {
+    if (
+      audioContext.state === 'suspended'
+    ) {
 
-      document
-        .getElementById('nav')
-        .classList
-        .remove('open');
-
-    }
-
-
-    /* =========================
-       MENU FILTER
-    ========================== */
-
-    function filterMenu(type, button) {
-
-      playClickSound();
-
-      document
-        .querySelectorAll('.cat')
-        .forEach(b => b.classList.remove('active'));
-
-      button.classList.add('active');
-
-
-      document
-        .querySelectorAll('.product')
-        .forEach(card => {
-
-          const show =
-            type === 'all' ||
-            card.dataset.type === type;
-
-          card.style.display =
-            show ? 'grid' : 'none';
-
-        });
+      audioContext.resume();
 
     }
 
 
-    /* =========================
-       WHATSAPP
-    ========================== */
+    const oscillator =
+      audioContext.createOscillator();
 
-    function orderWhatsApp() {
 
-      playClickSound();
+    const gain =
+      audioContext.createGain();
 
-      alert(
-        '01022951908'
+
+    oscillator.type =
+      'sine';
+
+
+    oscillator.frequency.setValueAtTime(
+      520,
+      audioContext.currentTime
+    );
+
+
+    oscillator.frequency.exponentialRampToValueAtTime(
+      260,
+      audioContext.currentTime + 0.07
+    );
+
+
+    gain.gain.setValueAtTime(
+      0.0001,
+      audioContext.currentTime
+    );
+
+
+    gain.gain.exponentialRampToValueAtTime(
+      0.06,
+      audioContext.currentTime + 0.005
+    );
+
+
+    gain.gain.exponentialRampToValueAtTime(
+      0.0001,
+      audioContext.currentTime + 0.07
+    );
+
+
+    oscillator.connect(gain);
+
+    gain.connect(
+      audioContext.destination
+    );
+
+
+    oscillator.start();
+
+
+    oscillator.stop(
+      audioContext.currentTime + 0.08
+    );
+
+
+  } catch (error) {
+
+    console.log(
+      'Audio is not supported:',
+      error
+    );
+
+  }
+
+}
+
+
+/* =========================
+   LOGO EFFECT
+========================== */
+
+document.addEventListener(
+  'DOMContentLoaded',
+  () => {
+
+
+    const logo =
+      document.getElementById(
+        'mainLogo'
+      );
+
+
+    const brand =
+      document.querySelector(
+        '.brand'
+      );
+
+
+    if (logo && brand) {
+
+
+      brand.addEventListener(
+        'mousemove',
+        (event) => {
+
+
+          const rect =
+            brand.getBoundingClientRect();
+
+
+          const x =
+            event.clientX -
+            rect.left;
+
+
+          const y =
+            event.clientY -
+            rect.top;
+
+
+          const centerX =
+            rect.width / 2;
+
+
+          const centerY =
+            rect.height / 2;
+
+
+          const rotateY =
+            ((x - centerX) / centerX) * 12;
+
+
+          const rotateX =
+            ((centerY - y) / centerY) * 10;
+
+
+          logo.style.transform =
+            `perspective(700px)
+             rotateX(${rotateX}deg)
+             rotateY(${rotateY}deg)
+             scale(1.08)`;
+
+        }
+      );
+
+
+      brand.addEventListener(
+        'mouseleave',
+        () => {
+
+          logo.style.transform =
+            'perspective(700px) rotateX(0deg) rotateY(0deg) scale(1)';
+
+        }
       );
 
     }
 
 
-    /* =========================
-       CLICK SOUND
-    ========================== */
+  }
+);
 
-    let audioContext;
+</script>
 
-
-    function playClickSound() {
-
-      try {
-
-        if (!audioContext) {
-
-          audioContext =
-            new (window.AudioContext ||
-                 window.webkitAudioContext)();
-
-        }
-
-
-        if (audioContext.state === 'suspended') {
-          audioContext.resume();
-        }
-
-
-        const oscillator =
-          audioContext.createOscillator();
-
-        const gain =
-          audioContext.createGain();
-
-
-        oscillator.type = 'sine';
-
-        oscillator.frequency.setValueAtTime(
-          520,
-          audioContext.currentTime
-        );
-
-        oscillator.frequency.exponentialRampToValueAtTime(
-          260,
-          audioContext.currentTime + 0.07
-        );
-
-
-        gain.gain.setValueAtTime(
-          0.0001,
-          audioContext.currentTime
-        );
-
-        gain.gain.exponentialRampToValueAtTime(
-          0.06,
-          audioContext.currentTime + 0.005
-        );
-
-        gain.gain.exponentialRampToValueAtTime(
-          0.0001,
-          audioContext.currentTime + 0.07
-        );
-
-
-        oscillator.connect(gain);
-        gain.connect(audioContext.destination);
-
-
-        oscillator.start();
-
-        oscillator.stop(
-          audioContext.currentTime + 0.08
-        );
-
-      } catch (error) {
-
-        console.log(
-          'Audio is not supported:',
-          error
-        );
-
-      }
-
-    }
-
-
-    /* =========================
-       ALL CLICKABLE ELEMENTS
-    ========================== */
-
-    document.addEventListener('DOMContentLoaded', () => {
-
-      document
-        .querySelectorAll(
-          'a, button, .product, .features > div'
-        )
-        .forEach(element => {
-
-          element.addEventListener(
-            'click',
-            () => {
-
-              /*
-                الفلاتر والواتساب عندهم الصوت
-                بالفعل داخل وظائفهم، لذلك لا نشغله
-                مرتين.
-              */
-
-              if (
-                element.classList.contains('cat') ||
-                element.classList.contains('whatsapp')
-              ) {
-                return;
-              }
-
-              playClickSound();
-
-            }
-          );
-
-        });
-
-
-      /* =========================
-         LOGO MOUSE EFFECT
-      ========================== */
-
-      const logo =
-        document.getElementById('mainLogo');
-
-
-      const brand =
-        document.querySelector('.brand');
-
-
-      if (logo && brand) {
-
-        brand.addEventListener(
-          'mousemove',
-          (event) => {
-
-            const rect =
-              brand.getBoundingClientRect();
-
-            const x =
-              event.clientX - rect.left;
-
-            const y =
-              event.clientY - rect.top;
-
-
-            const centerX =
-              rect.width / 2;
-
-            const centerY =
-              rect.height / 2;
-
-
-            const rotateY =
-              ((x - centerX) / centerX) * 12;
-
-            const rotateX =
-              ((centerY - y) / centerY) * 10;
-
-
-            logo.style.transform =
-              `perspective(700px)
-               rotateX(${rotateX}deg)
-               rotateY(${rotateY}deg)
-               scale(1.08)`;
-
-          }
-        );
-
-
-        brand.addEventListener(
-          'mouseleave',
-          () => {
-
-            logo.style.transform =
-              'perspective(700px) rotateX(0deg) rotateY(0deg) scale(1)';
-
-          }
-        );
-
-      }
-
-    });
-
-  </script>
 
 </body>
+
 </html>
