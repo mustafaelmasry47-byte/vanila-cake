@@ -1,0 +1,673 @@
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#111111">
+
+  <title>Vanilla Cake | فانليا كيك</title>
+
+  <meta name="description" content="Vanilla Cake - كيك وحلويات أونلاين">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header class="header">
+
+    <a class="brand" href="#home" aria-label="Vanilla Cake">
+      <img
+        src="assets/logo.png"
+        alt="Vanilla Cake logo"
+        id="mainLogo"
+      >
+    </a>
+
+    <button
+      class="menu-btn"
+      aria-label="فتح القائمة"
+      onclick="toggleMenu()"
+    >
+      ☰
+    </button>
+
+    <nav id="nav">
+
+      <a href="#home" onclick="closeMenu()">
+        الرئيسية
+      </a>
+
+      <a href="#menu" onclick="closeMenu()">
+        المنيو
+      </a>
+
+      <a href="#about" onclick="closeMenu()">
+        اتعرف علينا اكتر
+      </a>
+
+      <a href="#contact" onclick="closeMenu()">
+        اطلب الآن
+      </a>
+
+    </nav>
+
+  </header>
+
+
+  <main>
+
+    <!-- HERO -->
+
+    <section id="home" class="hero">
+
+      <div class="hero-copy">
+
+        <span class="eyebrow">
+          VANILLA CAKE
+        </span>
+
+        <h1>
+          
+          <strong>اختار حاجة تحلي بيها</strong>
+        </h1>
+
+        <p>
+          كيك وحلويات بتتعمل بحب، وبتوصلك لحد باب البيت.
+        </p>
+
+        <div class="actions">
+
+          <a class="btn primary" href="#menu">
+            شوف المنيو
+          </a>
+
+          <a class="btn ghost" href="#contact">
+            اطلب دلوقتي
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <div class="hero-card">
+
+        <img
+          src="assets/logo.png"
+          alt="Vanilla Cake"
+        >
+
+      </div>
+
+    </section>
+
+
+    <!-- MENU -->
+
+    <section id="menu" class="section">
+
+      <div class="section-title">
+
+        <span>
+          OUR MENU
+        </span>
+
+        <h2>
+          يلا بينا نختار😍
+        </h2>
+
+        <p>
+          مفيش اسعار للتورت ثابته  عشان الخمات كل يوم اسعرها بتتغير ومش ثابته وغير كل ده كل ديزاين وليه سعره❤️
+        </p>
+
+      </div>
+
+
+      <div class="categories">
+
+        <button
+          class="cat active"
+          onclick="filterMenu('all', this)"
+        >
+          الكل
+        </button>
+
+        <button
+          class="cat"
+          onclick="filterMenu('cakes', this)"
+        >
+          كيك
+        </button>
+
+        <button
+          class="cat"
+          onclick="filterMenu('desserts', this)"
+        >
+          كب كيكس و كوكيز
+        </button>
+
+        <button
+          class="cat"
+          onclick="filterMenu('special', this)"
+        >
+          مميز
+        </button>
+
+      </div>
+
+
+      <div class="products">
+
+        <article class="product" data-type="cakes">
+
+          <div class="product-image">
+            🎂
+          </div>
+
+          <div>
+            <h3>
+              كيكة شوكولاتة
+            </h3>
+
+            <p>
+              كيك شوكولاتة بصوص غني.
+            </p>
+
+            <b>
+              500
+            </b>
+          </div>
+
+        </article>
+
+
+        <article class="product" data-type="cakes">
+
+          <div class="product-image">
+            🍰
+          </div>
+
+          <div>
+            <h3>
+              كيكة فانيليا
+            </h3>
+
+            <p>
+              خفيفة وكريمية بطعم الفانيليا.
+            </p>
+
+            <b>
+              500
+            </b>
+          </div>
+
+        </article>
+
+
+        <article class="product" data-type="desserts">
+
+          <div class="product-image">
+            🧁
+          </div>
+
+          <div>
+            <h3>
+              كب كيك
+            </h3>
+
+            <p>
+              دسته 12 قطعه طعمها حكايه.❤️
+            </p>
+
+            <b>
+              350
+            </b>
+          </div>
+
+        </article>
+
+
+        <article class="product" data-type="desserts">
+
+          <div class="product-image">
+            🍪
+          </div>
+
+          <div>
+            <h3>
+              كوكيز
+            </h3>
+
+            <p>
+        (الكوكيز بتخرج بالكيلو)
+             مخبوزة طازة وبقوام غني
+            </p>
+
+            <b>
+              400
+            </b>
+          </div>
+
+        </article>
+
+
+        <article class="product" data-type="special">
+
+          <div class="product-image">
+            🍫
+          </div>
+
+          <div>
+            <h3>
+              شوكولاتة
+            </h3>
+
+            <p>
+              اكبر تشكيله من بارات الشكولاته وطعمها روعه❤️
+            </p>
+
+            <b>
+              حسب الطلب
+            </b>
+          </div>
+
+        </article>
+
+
+        <article class="product" data-type="special">
+
+          <div class="product-image">
+            🎁
+          </div>
+
+          <div>
+            <h3>
+              بوكس مناسبات
+            </h3>
+
+            <p>
+              بوكس هدايه ينفع تعملي بيه سوبرايز لخطيبك😍
+            </p>
+
+            <b>
+              اسال الادمن في جروب الوتساب 
+            </b>
+          </div>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+
+    <section id="about" class="about section">
+
+      <div>
+
+        <span class="eyebrow">
+          WHY VANILLA?
+        </span>
+
+        <h2>
+   ✨احنا ديما غير✨
+        </h2>
+
+        <p>
+فانليا كيك مش مجرد بيدج اون لاين 
+    احنا تيم كبير وعيله هدفنا ديما نقدملك اعلي جوده واقل سعر ❤️
+        </p>
+
+      </div>
+
+
+      <div class="features">
+
+        <div>
+          <span>01</span>
+          <h3>طازة</h3>
+          <p>تحضير حسب الطلب.</p>
+        </div>
+
+        <div>
+          <span>02</span>
+          <h3>على ذوقك</h3>
+          <p>متاح بكل سهوله تبعتلنا التصميم الي تحبه
+            او تقولنا علي الي في دماغك واحنا ننفظه❤️
+          </p>
+        </div>
+
+        <div>
+          <span>03</span>
+          <h3>أونلاين</h3>
+          <p>اطلب بسهولة من الموبايل.</p>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- CONTACT -->
+
+    <section id="contact" class="order section">
+
+      <div class="section-title">
+
+        <span>
+          ORDER NOW
+        </span>
+
+        <h2>
+          عايز تطلب؟
+        </h2>
+
+        <p>
+          ابعتلنا تفاصيل طلبك على واتساب.
+        </p>
+
+      </div>
+
+
+      <a
+        class="whatsapp"
+        href="#"
+        onclick="orderWhatsApp(); return false;"
+      >
+        💬 اطلب على واتساب
+      </a>
+
+      <p class="small">
+        01022951908
+      </p>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <img
+      src="assets/logo.png"
+      alt="Vanilla Cake"
+    >
+
+    <p>
+      © 2026 Vanilla Cake — All Rights Reserved
+    </p>
+
+  </footer>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
+
+  <script>
+
+    /* =========================
+       MENU
+    ========================== */
+
+    function toggleMenu() {
+
+      document
+        .getElementById('nav')
+        .classList
+        .toggle('open');
+
+    }
+
+
+    function closeMenu() {
+
+      document
+        .getElementById('nav')
+        .classList
+        .remove('open');
+
+    }
+
+
+    /* =========================
+       MENU FILTER
+    ========================== */
+
+    function filterMenu(type, button) {
+
+      playClickSound();
+
+      document
+        .querySelectorAll('.cat')
+        .forEach(b => b.classList.remove('active'));
+
+      button.classList.add('active');
+
+
+      document
+        .querySelectorAll('.product')
+        .forEach(card => {
+
+          const show =
+            type === 'all' ||
+            card.dataset.type === type;
+
+          card.style.display =
+            show ? 'grid' : 'none';
+
+        });
+
+    }
+
+
+    /* =========================
+       WHATSAPP
+    ========================== */
+
+    function orderWhatsApp() {
+
+      playClickSound();
+
+      alert(
+        '01022951908'
+      );
+
+    }
+
+
+    /* =========================
+       CLICK SOUND
+    ========================== */
+
+    let audioContext;
+
+
+    function playClickSound() {
+
+      try {
+
+        if (!audioContext) {
+
+          audioContext =
+            new (window.AudioContext ||
+                 window.webkitAudioContext)();
+
+        }
+
+
+        if (audioContext.state === 'suspended') {
+          audioContext.resume();
+        }
+
+
+        const oscillator =
+          audioContext.createOscillator();
+
+        const gain =
+          audioContext.createGain();
+
+
+        oscillator.type = 'sine';
+
+        oscillator.frequency.setValueAtTime(
+          520,
+          audioContext.currentTime
+        );
+
+        oscillator.frequency.exponentialRampToValueAtTime(
+          260,
+          audioContext.currentTime + 0.07
+        );
+
+
+        gain.gain.setValueAtTime(
+          0.0001,
+          audioContext.currentTime
+        );
+
+        gain.gain.exponentialRampToValueAtTime(
+          0.06,
+          audioContext.currentTime + 0.005
+        );
+
+        gain.gain.exponentialRampToValueAtTime(
+          0.0001,
+          audioContext.currentTime + 0.07
+        );
+
+
+        oscillator.connect(gain);
+        gain.connect(audioContext.destination);
+
+
+        oscillator.start();
+
+        oscillator.stop(
+          audioContext.currentTime + 0.08
+        );
+
+      } catch (error) {
+
+        console.log(
+          'Audio is not supported:',
+          error
+        );
+
+      }
+
+    }
+
+
+    /* =========================
+       ALL CLICKABLE ELEMENTS
+    ========================== */
+
+    document.addEventListener('DOMContentLoaded', () => {
+
+      document
+        .querySelectorAll(
+          'a, button, .product, .features > div'
+        )
+        .forEach(element => {
+
+          element.addEventListener(
+            'click',
+            () => {
+
+              /*
+                الفلاتر والواتساب عندهم الصوت
+                بالفعل داخل وظائفهم، لذلك لا نشغله
+                مرتين.
+              */
+
+              if (
+                element.classList.contains('cat') ||
+                element.classList.contains('whatsapp')
+              ) {
+                return;
+              }
+
+              playClickSound();
+
+            }
+          );
+
+        });
+
+
+      /* =========================
+         LOGO MOUSE EFFECT
+      ========================== */
+
+      const logo =
+        document.getElementById('mainLogo');
+
+
+      const brand =
+        document.querySelector('.brand');
+
+
+      if (logo && brand) {
+
+        brand.addEventListener(
+          'mousemove',
+          (event) => {
+
+            const rect =
+              brand.getBoundingClientRect();
+
+            const x =
+              event.clientX - rect.left;
+
+            const y =
+              event.clientY - rect.top;
+
+
+            const centerX =
+              rect.width / 2;
+
+            const centerY =
+              rect.height / 2;
+
+
+            const rotateY =
+              ((x - centerX) / centerX) * 12;
+
+            const rotateX =
+              ((centerY - y) / centerY) * 10;
+
+
+            logo.style.transform =
+              `perspective(700px)
+               rotateX(${rotateX}deg)
+               rotateY(${rotateY}deg)
+               scale(1.08)`;
+
+          }
+        );
+
+
+        brand.addEventListener(
+          'mouseleave',
+          () => {
+
+            logo.style.transform =
+              'perspective(700px) rotateX(0deg) rotateY(0deg) scale(1)';
+
+          }
+        );
+
+      }
+
+    });
+
+  </script>
+
+</body>
+</html>
