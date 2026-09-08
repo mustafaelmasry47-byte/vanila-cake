@@ -622,6 +622,7 @@ transition-duration:.01ms !important;
 scroll-behavior:auto !important;
 }
 }
+
 /* =========================
 PRICE OPTIONS
 ========================= */
@@ -633,14 +634,15 @@ margin-top:10px;
 }
 
 .price-options button{
-border:1px solid #ddd;
+width:100%;
+border:none;
 background:#111;
 color:#fff;
-padding:7px 9px;
+padding:9px 12px;
 border-radius:8px;
 cursor:pointer;
 font-family:inherit;
-font-size:12px;
+font-size:13px;
 font-weight:700;
 transition:transform .15s ease,opacity .15s ease;
 }
@@ -649,7 +651,7 @@ transition:transform .15s ease,opacity .15s ease;
 .price-options button:active{transform:scale(.96)}
 
 @media(max-width:600px){
-.price-options button{font-size:11px;padding:6px 8px}
+.price-options button{font-size:12px;padding:8px 10px}
 }
 
 /* =========================
