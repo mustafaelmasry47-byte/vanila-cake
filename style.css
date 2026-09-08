@@ -622,3 +622,56 @@ transition-duration:.01ms !important;
 scroll-behavior:auto !important;
 }
 }
+/* =========================
+PRICE OPTIONS
+========================= */
+.price-options{
+display:flex;
+flex-wrap:wrap;
+gap:6px;
+margin-top:10px;
+}
+
+.price-options button{
+border:1px solid #ddd;
+background:#111;
+color:#fff;
+padding:7px 9px;
+border-radius:8px;
+cursor:pointer;
+font-family:inherit;
+font-size:12px;
+font-weight:700;
+transition:transform .15s ease,opacity .15s ease;
+}
+
+.price-options button:hover{opacity:.88;transform:translateY(-1px)}
+.price-options button:active{transform:scale(.96)}
+
+@media(max-width:600px){
+.price-options button{font-size:11px;padding:6px 8px}
+}
+
+/* =========================
+FLAVOR SELECT
+========================= */
+.flavor-select{
+width:100%;
+box-sizing:border-box;
+padding:10px 12px;
+margin-top:10px;
+border:1px solid #ddd;
+border-radius:10px;
+background:#fff;
+color:#222;
+font-family:inherit;
+font-size:14px;
+font-weight:700;
+cursor:pointer;
+outline:none;
+}
+
+.flavor-select:focus{
+border-color:#111;
+box-shadow:0 0 0 3px rgba(0,0,0,.07);
+}

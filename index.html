@@ -512,260 +512,220 @@
 
   <div class="categories">
 
-    <button
-      class="cat active"
-      onclick="filterMenu('all', this)"
-    >
-      الكل
-    </button>
-
-    <button
-      class="cat"
-      onclick="filterMenu('cakes', this)"
-    >
-      كيك
-    </button>
-
-    <button
-      class="cat"
-      onclick="filterMenu('desserts', this)"
-    >
-      كب كيكس و كوكيز
-    </button>
-
-    <button
-      class="cat"
-      onclick="filterMenu('special', this)"
-    >
-      مميز
-    </button>
+    <button class="cat active" onclick="filterMenu('all', this)">الكل</button>
+    <button class="cat" onclick="filterMenu('cakes', this)">كيك</button>
+    <button class="cat" onclick="filterMenu('casseroles', this)">طواجن</button>
+    <button class="cat" onclick="filterMenu('cups', this)">Cups</button>
+    <button class="cat" onclick="filterMenu('donuts', this)">Donuts</button>
+    <button class="cat" onclick="filterMenu('cinnabon', this)">Cinnabon</button>
+    <button class="cat" onclick="filterMenu('desserts', this)">كب كيك و كوكيز</button>
+    <button class="cat" onclick="filterMenu('nawaem', this)">النواعم</button>
+    <button class="cat" onclick="filterMenu('special', this)">مميز</button>
 
   </div>
 
 
   <div class="products">
 
-
-    <!-- CHOCOLATE CAKE -->
-
-    <article
-      class="product"
-      data-type="cakes"
-    >
-
-      <div class="product-image">
-        🎂
-      </div>
-
+    <!-- CAKES -->
+    <article class="product" data-type="cakes">
+      <div class="product-image">🎂</div>
       <div>
-
-        <h3>
-          كيكة شوكولاتة
-        </h3>
-
-        <p>
-          كيك شوكولاتة بصوص غني.
-        </p>
-
-        <b>
-          500 جنيه
-        </b>
-
-        <button
-          class="add-cart"
-          onclick="addToCart('كيكة شوكولاتة', 500)"
-        >
-          🛒 أضف للسلة
-        </button>
-
+        <h3>كيكة شوكولاتة</h3>
+        <p>كيك شوكولاتة بصوص غني.</p>
+        <b>500 جنيه</b>
+        <button class="add-cart" onclick="addToCart('كيكة شوكولاتة', 500)">🛒 أضف للسلة</button>
       </div>
-
     </article>
 
-
-    <!-- VANILLA CAKE -->
-
-    <article
-      class="product"
-      data-type="cakes"
-    >
-
-      <div class="product-image">
-        🍰
-      </div>
-
+    <article class="product" data-type="cakes">
+      <div class="product-image">🍰</div>
       <div>
-
-        <h3>
-          كيكة فانيليا
-        </h3>
-
-        <p>
-          خفيفة وكريمية بطعم الفانيليا.
-        </p>
-
-        <b>
-          500 جنيه
-        </b>
-
-        <button
-          class="add-cart"
-          onclick="addToCart('كيكة فانيليا', 500)"
-        >
-          🛒 أضف للسلة
-        </button>
-
+        <h3>كيكة فانيليا</h3>
+        <p>خفيفة وكريمية بطعم الفانيليا.</p>
+        <b>500 جنيه</b>
+        <button class="add-cart" onclick="addToCart('كيكة فانيليا', 500)">🛒 أضف للسلة</button>
       </div>
-
     </article>
 
-
-    <!-- CUPCAKE -->
-
-    <article
-      class="product"
-      data-type="desserts"
-    >
-
-      <div class="product-image">
-        🧁
-      </div>
-
+    <!-- CASSEROLE -->
+    <article class="product" data-type="casseroles">
+      <div class="product-image">🍮</div>
       <div>
-
-        <h3>
-          كب كيك
-        </h3>
-
-        <p>
-          دستة 12 قطعة طعمها حكاية ❤️
-        </p>
-
-        <b>
-          350 جنيه
-        </b>
-
-        <button
-          class="add-cart"
-          onclick="addToCart('كب كيك - 12 قطعة', 350)"
-        >
-          🛒 أضف للسلة
-        </button>
-
+        <h3>طاجن</h3>
+        <p>اختار الطعم ثم اختار السعر.</p>
+        <select class="flavor-select" aria-label="اختار طعم الطاجن" onchange="updateFlavorPrices(this)">
+          <option value="" selected disabled>اختار الطعم</option>
+          <option value="شوكليت" data-prices="50,55">شوكليت</option>
+          <option value="أوريو" data-prices="50,55">أوريو</option>
+          <option value="كراميل" data-prices="50,55">كراميل</option>
+          <option value="فراولة" data-prices="50,55">فراولة</option>
+          <option value="لوتس" data-prices="50,55">لوتس</option>
+          <option value="مانجا" data-prices="50,55">مانجا</option>
+          <option value="باونتي" data-prices="50,55">باونتي</option>
+          <option value="كيندر" data-prices="55,60">كيندر</option>
+          <option value="فيريرو" data-prices="55,60">فيريرو</option>
+          <option value="نوتيلا" data-prices="55,60">نوتيلا</option>
+          <option value="وايت شوكليت" data-prices="55,60">وايت شوكليت</option>
+          <option value="بيستاشيو" data-prices="65">بيستاشيو</option>
+        </select>
+        <div class="price-options"></div>
       </div>
-
     </article>
 
-
-    <!-- COOKIES -->
-
-    <article
-      class="product"
-      data-type="desserts"
-    >
-
-      <div class="product-image">
-        🍪
-      </div>
-
+    <!-- MILTON CAKE -->
+    <article class="product" data-type="casseroles">
+      <div class="product-image">🍰</div>
       <div>
-
-        <h3>
-          كوكيز
-        </h3>
-
-        <p>
-          الكوكيز بتخرج بالكيلو، مخبوزة طازة وبقوام غني.
-        </p>
-
-        <b>
-          400 جنيه
-        </b>
-
-        <button
-          class="add-cart"
-          onclick="addToCart('كوكيز - كيلو', 400)"
-        >
-          🛒 أضف للسلة
-        </button>
-
+        <h3>ميلتون كيك</h3>
+        <p>اختار الطعم ثم اختار السعر.</p>
+        <select class="flavor-select" aria-label="اختار طعم الميلتون كيك" onchange="updateFlavorPrices(this)">
+          <option value="" selected disabled>اختار الطعم</option>
+          <option value="شوكليت" data-prices="55,65,75">شوكليت</option>
+          <option value="دارك شوكليت" data-prices="65,75,85">دارك شوكليت</option>
+          <option value="لوتس" data-prices="65,75,85">لوتس</option>
+        </select>
+        <div class="price-options"></div>
       </div>
-
     </article>
 
-
-    <!-- CHOCOLATE -->
-
-    <article
-      class="product"
-      data-type="special"
-    >
-
-      <div class="product-image">
-        🍫
-      </div>
-
+    <!-- CUPS - ONE CARD -->
+    <article class="product" data-type="cups">
+      <div class="product-image">🥤</div>
       <div>
-
-        <h3>
-          شوكولاتة
-        </h3>
-
-        <p>
-          أكبر تشكيلة من بارات الشوكولاتة وطعمها روعة ❤️
-        </p>
-
-        <b>
-          حسب الطلب
-        </b>
-
-        <button
-          class="add-cart"
-          onclick="orderWhatsApp('شوكولاتة')"
-        >
-          💬 اطلب على واتساب
-        </button>
-
+        <h3>كب</h3>
+        <p>اختار الطعم ثم اختار السعر.</p>
+        <select class="flavor-select" aria-label="اختار طعم الكب" onchange="updateFlavorPrices(this)">
+          <option value="" selected disabled>اختار الطعم</option>
+          <option value="شوكليت" data-prices="30,35">شوكليت</option>
+          <option value="كراميل" data-prices="30,35">كراميل</option>
+          <option value="فراولة" data-prices="30,35">فراولة</option>
+          <option value="لوتس" data-prices="30,35">لوتس</option>
+          <option value="مانجا" data-prices="30,35">مانجا</option>
+          <option value="لبن" data-prices="30,35">لبن</option>
+          <option value="كيندر" data-prices="35,40">كيندر</option>
+          <option value="نوتيلا" data-prices="35,40">نوتيلا</option>
+          <option value="فيريرو" data-prices="35,40">فيريرو</option>
+          <option value="رافيلو" data-prices="35,40">رافيلو</option>
+          <option value="وايت شوكليت" data-prices="35,40">وايت شوكليت</option>
+          <option value="أوريو" data-prices="40">أوريو</option>
+          <option value="بيستاشيو" data-prices="45">بيستاشيو</option>
+          <option value="سنيكرز" data-prices="50">سنيكرز</option>
+        </select>
+        <div class="price-options"></div>
       </div>
-
     </article>
 
-
-    <!-- GIFT BOX -->
-
-    <article
-      class="product"
-      data-type="special"
-    >
-
-      <div class="product-image">
-        🎁
-      </div>
-
+    <!-- DONUTS - ONE CARD -->
+    <article class="product" data-type="donuts">
+      <div class="product-image">🍩</div>
       <div>
-
-        <h3>
-          بوكس مناسبات
-        </h3>
-
-        <p>
-          بوكس هدايا ينفع تعملي بيه سوبرايز لخطيبك 😍
-        </p>
-
-        <b>
-          اسأل الأدمن
-        </b>
-
-        <button
-          class="add-cart"
-          onclick="orderWhatsApp('بوكس مناسبات')"
-        >
-          💬 اطلب على واتساب
-        </button>
-
+        <h3>دوناتس</h3>
+        <p>اختار الطعم ثم اختار السعر.</p>
+        <select class="flavor-select" aria-label="اختار طعم الدوناتس" onchange="updateFlavorPrices(this)">
+          <option value="" selected disabled>اختار الطعم</option>
+          <option value="جيلي" data-prices="30">جيلي</option>
+          <option value="كلاسيك" data-prices="30">كلاسيك</option>
+          <option value="كلاسيك كراميل" data-prices="30">كلاسيك كراميل</option>
+          <option value="سكر وقرفة" data-prices="30">سكر وقرفة</option>
+          <option value="وايت شوكليت" data-prices="40">وايت شوكليت</option>
+          <option value="لوتس" data-prices="40">لوتس</option>
+          <option value="نوتيلا" data-prices="40">نوتيلا</option>
+          <option value="رافيلو" data-prices="45">رافيلو</option>
+          <option value="فيريرو" data-prices="45">فيريرو</option>
+          <option value="كيندر" data-prices="45">كيندر</option>
+          <option value="أوريو وايت شوكليت" data-prices="45">أوريو وايت شوكليت</option>
+          <option value="بلوبيري" data-prices="45">بلوبيري</option>
+          <option value="بيستاشيو" data-prices="50">بيستاشيو</option>
+        </select>
+        <div class="price-options"></div>
       </div>
-
     </article>
+
+    <!-- DONUT MIX -->
+
+    <!-- CINNABON - ONE CARD -->
+    <article class="product" data-type="cinnabon">
+      <div class="product-image">🍥</div>
+      <div>
+        <h3>سينابون</h3>
+        <p>اختار الطعم ثم أضفه للسلة.</p>
+        <select class="flavor-select" aria-label="اختار طعم السينابون" onchange="updateFlavorPrices(this)">
+          <option value="" selected disabled>اختار الطعم</option>
+          <option value="كلاسيك" data-prices="70">كلاسيك</option>
+          <option value="شوكولاتة" data-prices="80">شوكولاتة</option>
+          <option value="كراميل" data-prices="80">كراميل</option>
+          <option value="لوتس" data-prices="80">لوتس</option>
+          <option value="نوتيلا" data-prices="80">نوتيلا</option>
+          <option value="بلوبيري" data-prices="100">بلوبيري</option>
+          <option value="كيندر" data-prices="100">كيندر</option>
+          <option value="بيستاشيو" data-prices="100">بيستاشيو</option>
+        </select>
+        <div class="price-options"></div>
+      </div>
+    </article>
+
+    <!-- DONUT MIXES -->
+    <article class="product flavor-product" data-type="donuts">
+      <div class="product-image">🍩</div>
+      <div>
+        <h3>مكسات الدوناتس</h3>
+        <p>اختار المكس اللي تحبه.</p>
+        <select class="flavor-select" onchange="updateFlavorPrices(this)">
+          <option value="أوريو + دارك شوكليت" data-prices="45">أوريو + دارك شوكليت</option>
+          <option value="سنيكرز" data-prices="45">سنيكرز</option>
+          <option value="لوتس + نوتيلا" data-prices="45">لوتس + نوتيلا</option>
+          <option value="وايت شوكليت + كيندر + بيستاشيو" data-prices="55">وايت شوكليت + كيندر + بيستاشيو</option>
+        </select>
+        <div class="price-options"></div>
+      </div>
+    </article>
+
+    <!-- NAWAEM -->
+    <article class="product" data-type="nawaem">
+      <div class="product-image">🍪</div>
+      <div>
+        <h3>النواعم</h3>
+        <p>اختار الصنف ثم اختار السعر.</p>
+        <select class="flavor-select" aria-label="اختار صنف النواعم" onchange="updateFlavorPrices(this)">
+          <option value="" selected disabled>اختار الصنف</option>
+          <option value="بسكوت قهوة" data-prices="300">بسكوت قهوة</option>
+          <option value="كيك سادة / سمنة بلدي" data-prices="220,320">كيك سادة / سمنة بلدي</option>
+          <option value="كيك عبوة / ملبن" data-prices="250">كيك عبوة / ملبن</option>
+          <option value="غريبة سادة / مكسرات" data-prices="220,270">غريبة سادة / مكسرات</option>
+          <option value="بسكوت نشادر / برتقال" data-prices="230,250">بسكوت نشادر / برتقال</option>
+          <option value="سابليه عادي" data-prices="300">سابليه عادي</option>
+          <option value="سابليه سبيشيال" data-prices="370">سابليه سبيشيال</option>
+          <option value="سابليه بيستاشيو و راس بيري" data-prices="420">سابليه بيستاشيو و راس بيري</option>
+          <option value="بيتي فور" data-prices="300,350">بيتي فور</option>
+          <option value="بسكوت زبدة" data-prices="270">بسكوت زبدة</option>
+          <option value="الانكشير" data-prices="260">الانكشير</option>
+          <option value="بسكوت ليمون" data-prices="300,350">بسكوت ليمون</option>
+          <option value="معمول" data-prices="270">معمول</option>
+          <option value="كوكيز" data-prices="300">كوكيز</option>
+          <option value="كيلو مشكل" data-prices="350">كيلو مشكل</option>
+          <option value="قرقايش" data-prices="210">قرقايش</option>
+        </select>
+        <div class="price-options"></div>
+      </div>
+    </article>
+
+    <!-- DESSERTS -->
+    <article class="product" data-type="desserts"><div class="product-image">🧁</div><div><h3>كب كيك</h3><p>دستة 12 قطعة.</p><b>350 جنيه</b><button class="add-cart" onclick="addToCart('كب كيك - 12 قطعة',350)">🛒 أضف للسلة</button></div></article>
+    <article class="product" data-type="desserts"><div class="product-image">🍪</div><div><h3>كوكيز</h3><p>مخبوزة طازة وبقوام غني.</p><b>400 جنيه</b><button class="add-cart" onclick="addToCart('كوكيز - كيلو',400)">🛒 أضف للسلة</button></div></article>
+
+    <!-- SPECIAL -->
+    <article class="product" data-type="special">
+      <div class="product-image">🎁</div>
+      <div>
+        <h3>بوكس السهرة</h3>
+        <p>3 بانبوين + 4 دونات.</p>
+        <b>190 جنيه</b>
+        <button class="add-cart" onclick="addToCart('بوكس السهرة - 3 بانبوين + 4 دونات',190)">🛒 أضف للسلة</button>
+      </div>
+    </article>
+    <article class="product" data-type="special"><div class="product-image">🍫</div><div><h3>شوكولاتة</h3><p>تشكيلة شوكولاتة حسب الطلب.</p><b>حسب الطلب</b><button class="add-cart" onclick="orderWhatsApp('شوكولاتة')">💬 اطلب على واتساب</button></div></article>
+    <article class="product" data-type="special"><div class="product-image">🎁</div><div><h3>بوكس مناسبات</h3><p>بوكس هدايا للمناسبات والسوربرايز.</p><b>اسأل الأدمن</b><button class="add-cart" onclick="orderWhatsApp('بوكس مناسبات')">💬 اطلب على واتساب</button></div></article>
 
   </div>
 
@@ -1109,6 +1069,63 @@ let cart = [];
 
 
 /* إضافة للسلة */
+
+function updateFlavorPrices(select) {
+
+  const card = select.closest('.product');
+  const priceBox = card.querySelector('.price-options');
+  const option = select.options[select.selectedIndex];
+
+  priceBox.innerHTML = '';
+
+  if (!option || !option.dataset.prices) return;
+
+  option.dataset.prices.split(',').forEach(price => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.textContent = `${price} جنيه`;
+    button.dataset.price = price;
+    button.onclick = function () {
+      addFlavorItem(this);
+    };
+    priceBox.appendChild(button);
+  });
+}
+
+function addFlavorItem(button) {
+
+  const card = button.closest('.product');
+  const select = card.querySelector('.flavor-select');
+  const flavor = select.value;
+  const price = Number(button.dataset.price);
+  const title = card.querySelector('h3').textContent.trim();
+
+  if (!flavor) {
+    alert('اختار الطعم الأول ❤️');
+    select.focus();
+    return;
+  }
+
+  addToCart(`${title} - ${flavor}`, price);
+}
+
+
+function addCup(button, price) {
+
+  const card = button.closest('.product');
+  const select = card.querySelector('.flavor-select');
+  const flavor = select.value;
+
+  if (!flavor) {
+    alert('اختار طعم الكب الأول ❤️');
+    select.focus();
+    return;
+  }
+
+  addToCart(`كب - ${flavor}`, price);
+
+}
+
 
 function addToCart(name, price) {
 
